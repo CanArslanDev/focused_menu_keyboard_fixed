@@ -105,7 +105,7 @@ class _FocusedMenuHolderState extends State<FocusedMenuHolder> {
         onTap: () async {
           FocusScope.of(context).unfocus();
           
-          Timer(Duration(seconds: 1), () async{ 
+          Timer(Duration(milliseconds: 350), () async{ 
             widget.onPressed?.call();
           if (widget.openWithTap) {
             await openMenu(context);
@@ -114,7 +114,7 @@ class _FocusedMenuHolderState extends State<FocusedMenuHolder> {
         },
         onLongPress: () async {
           FocusScope.of(context).unfocus();
-          Timer(Duration(seconds: 1), () async{ 
+          Timer(Duration(milliseconds: 350), () async{ 
           if (!widget.openWithTap) {
             await openMenu(context);
           }
