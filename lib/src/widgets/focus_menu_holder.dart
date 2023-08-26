@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focused_menu/src/models/focused_menu_item.dart';
 import 'package:focused_menu/src/widgets/focused_menu_datails.dart';
+import 'dart:async';
 
 class FocusedMenuHolderController {
   late _FocusedMenuHolderState _widgetState;
@@ -103,16 +104,21 @@ class _FocusedMenuHolderState extends State<FocusedMenuHolder> {
         key: containerKey,
         onTap: () async {
           FocusScope.of(context).unfocus();
-          widget.onPressed?.call();
+          
+          Timer(Duration(seconds: 1), () { 
+            widget.onPressed?.call();
           if (widget.openWithTap) {
             await openMenu(context);
           }
+          });
         },
         onLongPress: () async {
           FocusScope.of(context).unfocus();
+          Timer(Duration(seconds: 1), () { 
           if (!widget.openWithTap) {
             await openMenu(context);
           }
+          });
         },
         child: widget.child);
   }
