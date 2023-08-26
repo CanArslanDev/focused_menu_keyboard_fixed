@@ -102,12 +102,14 @@ class _FocusedMenuHolderState extends State<FocusedMenuHolder> {
     return GestureDetector(
         key: containerKey,
         onTap: () async {
+          FocusScope.of(context).unfocus();
           widget.onPressed?.call();
           if (widget.openWithTap) {
             await openMenu(context);
           }
         },
         onLongPress: () async {
+          FocusScope.of(context).unfocus();
           if (!widget.openWithTap) {
             await openMenu(context);
           }
